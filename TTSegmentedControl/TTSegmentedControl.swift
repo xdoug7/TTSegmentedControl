@@ -24,6 +24,7 @@ public class TTSegmentedControl: UIView {
     @IBInspectable open var thumbGradientColors: [UIColor]? = [TTSegmentedControl.UIColorFromRGB(0xFFE900),TTSegmentedControl.UIColorFromRGB(0xFFB400)]
     @IBInspectable open var thumbShadowColor: UIColor = TTSegmentedControl.UIColorFromRGB(0x9B9B9B)
     @IBInspectable open var useShadow:Bool = true
+    @IBInspectable open var useInitialSelection:Bool = true
     
     //left and right space between items
     @IBInspectable open var padding: CGSize = CGSize(width: 30, height: 10)
@@ -119,13 +120,16 @@ public class TTSegmentedControl: UIView {
         
         containerView.frame = bounds
         containerView.layer.cornerRadius = cornerRadius < 0 ? 0.5 * containerView.frame.size.height : cornerRadius
-        selectedLabelsView.frame = containerView.bounds
         
         updateFrameForLables(allItemLabels)
         updateFrameForLables(allSelectedItemLabels)
         updateSelectedViewFrame()
-        
-        selectItemAt(index:currentSelectedIndex)
+
+        if useInitialSelection {
+            selectedLabelsView.frame = containerView.bounds
+            selectItemAt(index:selectInitialItem)
+        }
+
         _ = self.subviews.map({$0.isExclusiveTouch = true})
         
     }
@@ -628,11 +632,9 @@ extension TTSegmentedControl {
     }
     
     fileprivate func updateSelectedLabelsViewFrame(_ frame: CGRect) {
-        var bounds = selectedLabelsView.bounds
-        bounds.size.width = frame.size.width
-        bounds.origin.x = frame.origin.x
-        selectedLabelsView.bounds = bounds
+        selectedLabelsView.bounds = frame
         selectedLabelsView.frame.origin.x = frame.origin.x
+        selectedLabelsView.frame.origin.y = frame.origin.y
     }
 }
 
