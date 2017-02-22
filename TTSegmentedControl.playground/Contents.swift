@@ -7,7 +7,7 @@ import PlaygroundSupport
 let mainView = UIView(frame: CGRect(x: 0, y: 0, width: 350, height: 667))
 mainView.backgroundColor = UIColor.white
 
-
+var segmentedC5: TTSegmentedControl = TTSegmentedControl()
 var segmentedC4: TTSegmentedControl = TTSegmentedControl()
 var segmentedC3: TTSegmentedControl = TTSegmentedControl()
 var segmentedC2: TTSegmentedControl = TTSegmentedControl()
@@ -17,6 +17,7 @@ segmentedC1.frame = CGRect(x: 14, y: 73, width: 322, height: 76)
 segmentedC2.frame = CGRect(x: 14, y: 186, width: 322, height: 47)
 segmentedC3.frame = CGRect(x: 14, y: 299, width: 322, height: 47)
 segmentedC4.frame = CGRect(x: 203, y: 417, width: 133, height: 35)
+segmentedC5.frame = CGRect(x: 5, y: 535, width: 335, height: 56)
 
 
 
@@ -67,10 +68,21 @@ segmentedC4.useShadow = true
 segmentedC4.thumbShadowColor = TTSegmentedControl.UIColorFromRGB(0x56D37C)
 segmentedC4.allowChangeThumbWidth = false
 
+//SegmentedControl 5
+
+segmentedC5.itemTitles = ["0", "1", "2", "3", "4", "5"]
+segmentedC5.useShadow = false
+segmentedC5.useInitialSelection = false
+segmentedC5.allowChangeThumbWidth = true
+segmentedC5.selectedTextFont = UIFont.systemFont(ofSize: 13, weight: 0.3)
+segmentedC5.defaultTextFont = UIFont.systemFont(ofSize: 13, weight: 0.01)
+segmentedC5.thumbGradientColors = [ TTSegmentedControl.UIColorFromRGB(0xFE2C5A), TTSegmentedControl.UIColorFromRGB(0xF10EAE)]
+
 mainView.addSubview(segmentedC1)
 mainView.addSubview(segmentedC2)
 mainView.addSubview(segmentedC3)
 mainView.addSubview(segmentedC4)
+mainView.addSubview(segmentedC5)
 
 
 PlaygroundPage.current.liveView = mainView
